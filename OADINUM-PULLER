@@ -1,0 +1,11 @@
+import PyPDF4
+import re
+
+pdf_file = open('6-5-23 UOI000489104.pdf', 'rb')
+pdf_reader = PyPDF4.PdfFileReader(pdf_file)
+
+numbers = set()
+for page in pdf_reader.pages:
+    numbers.update(re.findall(r'\b600\d{5}\b', page.extractText()))
+
+print(list(numbers))
